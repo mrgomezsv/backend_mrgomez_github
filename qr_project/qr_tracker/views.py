@@ -1,5 +1,13 @@
 from django.http import JsonResponse
 from .models import QRCode
+from django.shortcuts import render
+
+
+
+def home(request):
+    return render(request, 'home.html')
+
+
 
 def generate_qr(request):
     if request.method == 'POST':
