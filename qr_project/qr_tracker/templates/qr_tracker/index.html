@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de QR</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+</head>
+<body>
+    <h1>Generar Código QR</h1>
+
+    <div>
+        <input type="text" id="text" placeholder="Introduce el texto o enlace">
+        <button onclick="generateQRCode()">Generar QR</button>
+    </div>
+
+    <div id="qrcode"></div>  <!-- Aquí se mostrará la imagen QR -->
+    <p id="qr-counter">QR Codes Generados: 0</p>  <!-- Contador de códigos QR generados -->
+
+    <script>
+        // Función para generar QR y contar los QR generados
+        function generateQRCode() {
+            const text = document.getElementById('text').value;
+
+            if (!text) {
+                alert("Por favor introduce un texto.");
+                return;
+            }
+
+            // Enviar el texto a la API de Django para generar el código QR y contar
+            fetch('/qr/generate_qr/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ 'text': text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.qr_count) {
+                    document.getElementById('qr-counter').innerText = `QR Codes Generados: ${data.qr_count}`;
+                }
+
+                // Generar la imagen QR usando el texto proporcionado
+                QRCode.toDataURL(text, { width: 340 }, function (error, url) {
+                    if (error) {
+                        console.error(error);
+                        return;
+                    }
+
+                    // Crear la imagen del QR
+                    const qrDiv = document.getElementById('qrcode');
+                    qrDiv.innerHTML = '';  // Limpiar cualquier QR previo
+                    const img = document.createElement('img');
+                    img.src = url;
+                    qrDiv.appendChild(img);  // Mostrar la imagen
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
