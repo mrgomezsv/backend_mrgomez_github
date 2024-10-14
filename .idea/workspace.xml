@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6f2cef6-c2cd-4259-bbc8-2619e978ef3a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/qr_project/accounts/templates/accounts/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/qr_project/accounts/templates/accounts/password_reset_confirm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qr_project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/qr_project/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qr_project/accounts/templates/accounts/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/qr_project/accounts/templates/accounts/password_reset_done.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
