@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from qr_tracker import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('qr/', include('qr_tracker.urls')),  # Incluye las URLs de qr_tracker
+    path('', views.home),  # Página de inicio en la raíz
 ]
-
