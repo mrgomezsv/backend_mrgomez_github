@@ -2,7 +2,12 @@ from django.http import JsonResponse
 from .models import QRCode
 from django.shortcuts import render
 
+from django.contrib.auth.decorators import login_required
 
+# Proteger la vista home con login_required
+@login_required
+def home(request):
+    return render(request, 'qr_tracker/index.html')
 
 def home(request):
     return render(request, 'home.html')
