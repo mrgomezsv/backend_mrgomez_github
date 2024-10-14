@@ -23,4 +23,5 @@ urlpatterns = [
     path('qr/', include('qr_tracker.urls')),  # Incluye las URLs de qr_tracker
     path('', views.home),  # Página de inicio en la raíz
     path('', include('qr_tracker.urls')),
+    path('accounts/', include('accounts.urls')),  # Añadir autenticación
 ]
