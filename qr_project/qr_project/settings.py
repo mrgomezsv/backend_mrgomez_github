@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-ym#c3$!8*um%4y*d7%^njs^37nd%(535t(+ffp$j0n9(io%2in
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # Si vas a desplegar en producción, añade tu dominio o IP aquí.
 
 
 # Application definition
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'qr_tracker',
+    'qr_tracker',  # Tu app para el generador de códigos QR
+    'accounts',    # Añadir la app de autenticación de usuarios
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'qr_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],  # Aquí puedes especificar carpetas de plantillas si no están en las apps.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,6 +83,16 @@ DATABASES = {
     }
 }
 
+# Configuración de envío de correos (SMTP) para recuperación de contraseñas
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Servidor SMTP de Gmail para pruebas
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'tu-correo@gmail.com'  # Reemplaza con tu correo de Gmail
+EMAIL_HOST_PASSWORD = 'tu-contraseña'    # Reemplaza con tu contraseña de Gmail
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'  # Correo predeterminado para enviar emails
+
+# Si despliegas en producción, asegúrate de proteger tu contraseña usando variables de entorno.
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -100,6 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Redirección después del login y logout
+LOGIN_REDIRECT_URL = 'home'  # Redirigir a la página de inicio después de iniciar sesión
+LOGOUT_REDIRECT_URL = 'login'  # Redirigir al login después del logout
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -117,6 +132,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Para producción, recolecta archivos estáticos en esta carpeta:
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
