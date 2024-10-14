@@ -14,14 +14,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
-from qr_tracker import views
+from django.http import HttpResponseRedirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('qr/', include('qr_tracker.urls')),  # Incluye las URLs de qr_tracker
-    path('', views.home),  # Página de inicio en la raíz
-    path('', include('qr_tracker.urls')),
     path('accounts/', include('accounts.urls')),  # Añadir autenticación
+
+    # Redirigir la raíz '/' al login
+    path('', lambda request: HttpResponseRedirect('/accounts/login/')),
 ]
