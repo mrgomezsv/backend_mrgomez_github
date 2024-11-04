@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('qr/', include('qr_tracker.urls')),  # Incluye las URLs de qr_tracker
     path('accounts/', include('accounts.urls')),  # Añadir autenticación
+    path('api/', include('api_comments.urls')),
 
     # Redirigir la raíz '/' al login
     path('', lambda request: HttpResponseRedirect('/accounts/login/')),

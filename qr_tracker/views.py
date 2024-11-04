@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from .models import QRCode
 from django.shortcuts import render
-
 from django.contrib.auth.decorators import login_required
 
 # Proteger la vista home con login_required

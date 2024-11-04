@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'qr_tracker',  # Tu app para el generador de códigos QR
     'accounts',    # Añadir la app de autenticación de usuarios
+    'api_comments',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

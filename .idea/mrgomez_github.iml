@@ -5,7 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/qr_project/venv/include" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 (backend_mrgomez_github)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.13 (backend_mrgomez_github)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
