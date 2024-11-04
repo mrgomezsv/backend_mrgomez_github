@@ -1,31 +1,26 @@
+# qr_tracker/views.py
 from django.http import JsonResponse
 from .models import QRCode
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
 
-# Proteger la vista home con login_required
 @login_required
 def home(request):
-    return render(request, 'qr_tracker/index.html')
+    return render(request, 'home.html')  # Renderiza la plantilla adecuada
 
-def home(request):
-    return render(request, 'home.html')
+class IndexView(TemplateView):
+    template_name = 'qr_tracker/index.html'
 
-
+class CommentsView(TemplateView):
+    template_name = 'comments/comments.html'
 
 def generate_qr(request):
     if request.method == 'POST':
-        # Obtener el texto enviado en la solicitud
         text = request.POST.get('text', '')
-
         if text:
-            # Guardar el QR generado en la base de datos
             qr_code = QRCode.objects.create(text=text)
-
-            # Obtener el número total de códigos QR generados
             qr_count = QRCode.objects.count()
-
-            # Devolver una respuesta JSON con la cuenta actualizada
             return JsonResponse({'message': 'QR generado con éxito', 'qr_count': qr_count})
         else:
             return JsonResponse({'error': 'No se proporcionó ningún texto'}, status=400)

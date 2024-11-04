@@ -6,7 +6,34 @@
     <title>Página de Inicio</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <style>
-        /* Clase para colocar el saludo y el botón en la parte superior derecha */
+        body {
+            background-color: #F4F1FF;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #343a40; /* Color de fondo de la sidebar */
+            color: white;
+            padding: 20px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .sidebar .li-title p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .content {
+            margin-left: 260px; /* Dejar espacio para la sidebar */
+            padding: 20px;
+        }
         .user-info {
             display: flex;
             justify-content: flex-end;
@@ -22,6 +49,24 @@
     </style>
 </head>
 <body>
+
+<nav class="sidebar" id="sidebar">
+    <ul>
+        {% if user.is_authenticated %}
+            <li class="li-title">
+                <p>Backend de Portafolio</p>
+                <a href="{% url 'index' %}">SMAP</a><!-- Suponiendo que tienes una vista llamada 'index' -->
+            </li>
+            <li class="li-item">
+                <p class="section-title">Sección</p>
+                <a href="{% url 'comments' %}" id="opcion1">Comentarios</a> <!-- Suponiendo que tienes una vista llamada 'comments' -->
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+
+<div class="content">
     <div class="container mt-4">
         <!-- Verificar si el usuario está autenticado para mostrar el botón de logout -->
         {% if user.is_authenticated %}
@@ -35,5 +80,7 @@
 
         <h1>Bienvenido a la API de Generación de Códigos QR</h1>
     </div>
+</div>
+
 </body>
 </html>
