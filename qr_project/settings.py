@@ -16,6 +16,13 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Carpeta donde se recolectarán los archivos estáticos
+
+# Media files (Uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Carpeta donde se almacenarán los archivos subidos por el usuario
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -24,9 +31,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ym#c3$!8*um%4y*d7%^njs^37nd%(535t(+ffp$j0n9(io%2in'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []  # Si vas a desplegar en producción, añade tu dominio o IP aquí.
+ALLOWED_HOSTS = ['api.webcraftedsolutions.net', 'www.api.webcraftedsolutions.net', '82.165.210.146']
+
 
 
 # Application definition
@@ -38,8 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'qr_tracker',  # Tu app para el generador de códigos QR
-    'accounts',    # Añadir la app de autenticación de usuarios
+    'qr_tracker',
+    'accounts',
     'api_comments',
     'rest_framework',
 ]
@@ -59,7 +67,7 @@ ROOT_URLCONF = 'qr_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # Aquí puedes especificar carpetas de plantillas si no están en las apps.
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,6 +80,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'qr_project.wsgi.application'
 
 
@@ -80,8 +89,12 @@ WSGI_APPLICATION = 'qr_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'api_mrgomez_github',
+        'USER': 'mrgomez',
+        'PASSWORD': 'Karin2100',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -117,6 +130,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Redirección después del login y logout
 LOGIN_REDIRECT_URL = 'home'  # Redirigir a la página de inicio después de iniciar sesión
 LOGOUT_REDIRECT_URL = 'login'  # Redirigir al login después del logout
+# settings.py
+LOGIN_URL = '/accounts/login/'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
