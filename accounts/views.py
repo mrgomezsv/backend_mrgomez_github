@@ -13,7 +13,7 @@ def register(request):
             user = form.save()
             login(request, user)  # Iniciar sesión automáticamente después del registro
             messages.success(request, f'Tu cuenta ha sido creada. ¡Bienvenido {user.username}!')
-            return redirect('home')  # Redirigir a la página de inicio
+            return redirect('base')  # Redirigir a la página de inicio
     else:
         form = UserRegisterForm()
 
