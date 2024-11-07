@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Redirección después del login y logout
-LOGIN_REDIRECT_URL = 'home'  # Redirigir a la página de inicio después de iniciar sesión
+LOGIN_REDIRECT_URL = '/comments/'  # Redirigir a la página de inicio después de iniciar sesión
 LOGOUT_REDIRECT_URL = 'login'  # Redirigir al login después del logout
 
 # Internationalization

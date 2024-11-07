@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-# backend_mrgomez_github/urls.py
+# /backend_mrgomez_github/qr_project/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponseRedirect
@@ -23,7 +23,7 @@ from qr_tracker.views import IndexView, CommentsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('qr/', include('qr_tracker.urls')),  # Incluye las URLs de qr_tracker
+    # path('qr/', include('qr_tracker.urls')),  # Incluye las URLs de qr_tracker
     path('accounts/', include('accounts.urls')),  # Añadir autenticación
     path('api/', include('api_comments.urls')),
     path('comments/', CommentsView.as_view(), name='comments'),

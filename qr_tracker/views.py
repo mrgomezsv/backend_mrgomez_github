@@ -1,13 +1,14 @@
 # qr_tracker/views.py
 from django.http import JsonResponse
 from .models import QRCode
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 
 @login_required
-def home(request):
-    return render(request, 'base.html')  # Renderiza la plantilla adecuada
+def base(request):
+    # Asegúrate de que no haya redirección a /qr/ aquí
+    return redirect('comments')  # Redirige a la vista de comentarios
 
 class IndexView(TemplateView):
     template_name = 'qr_tracker/index.html'
