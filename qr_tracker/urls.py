@@ -1,11 +1,9 @@
 # qr_tracker/urls.py
 from django.urls import path
-from . import views
-from .views import IndexView, CommentsView
+from .views import IndexView, CommentsView, home
 
 urlpatterns = [
-    path('', views.home, name='home'),  # Página principal
-    path('generate_qr/', views.generate_qr, name='generate_qr'),  # API para generar QR
-    path('index/', IndexView.as_view(), name='index'),  # Cambiar la ruta para IndexView
-    path('comments/', CommentsView.as_view(), name='comments'),  # Añadir comentarios si es necesario
+    path('', home, name='home'),  # URL para la vista 'home'
+    path('index/', IndexView.as_view(), name='index'),  # URL para la vista 'index'
+    path('comments/', CommentsView.as_view(), name='comments'),  # URL para la vista 'comments'
 ]

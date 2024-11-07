@@ -59,7 +59,7 @@ ROOT_URLCONF = 'qr_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # Aquí puedes especificar carpetas de plantillas si no están en las apps.
+        'DIRS': [BASE_DIR / 'templates'],  # Ajusta la ruta si tus templates están en otro lugar
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

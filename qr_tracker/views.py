@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 
 @login_required
 def home(request):
-    return render(request, 'home.html')  # Renderiza la plantilla adecuada
+    return render(request, 'base.html')  # Renderiza la plantilla adecuada
 
 class IndexView(TemplateView):
     template_name = 'qr_tracker/index.html'
